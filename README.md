@@ -5,3 +5,5 @@ This is a repository compiling the files created for a photographic verification
 The project involves a modular 3D-printable frame, which can be repurposed for use in other lightweight projects that need a weaker, cheaper alternative to aluminum extrusion. The electronics are built off of a Raspberry Pi 4.
 
 If some part of the device has broken, check the BOM in the 'documentation' folder to find the replacement. If you would like to print a new frame or parts of a frame, check the 'frame-parts' folder for the 3D files.
+
+If you would like to talk about the design, call me at (343) 462-8383 or e-mail candia.industrialdesign@gmail.com.
