@@ -1,4 +1,4 @@
-A brief description of each part:
+### A brief description of each part:
 
 Innie + Outie: The main parts that make up a length of the frame. Alternating these interlocking parts allows you to adjust the size.
 Extended Innie + Outie: The brackets extended by 30mm. 
