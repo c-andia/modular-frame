@@ -11,7 +11,7 @@ cam3 = Picamera2(3)
 
 start = time.time()
 
-USB_name = 'Lexar'
+USB_name = '/mnt/Lexar'
 
 def get_time():
         
@@ -21,22 +21,22 @@ def get_time():
 def process_timer(stage):
         if stage == 'stop':
                 print(f'time elapsed: {time.time()-start} seconds.')
-                        
+                
 def capture():
-    
+
         try:
                 
                 # create folder
                 
                 ftime = get_time()
                 
-                folderName = f"/media/bp/{USB_name}/Photos/{ftime}"
+                folderName = f"{USB_name}/Photos/'{ftime}'"
                 pathlib.Path.mkdir(folderName)
                 
                 # take photos
 
                 cam0.configure(cam0.create_still_configuration())
-                    
+                
                 cam0.start()
                 cam0.capture_file(f"{folderName}/photo 1.jpeg")
                 cam0.close()
@@ -61,7 +61,11 @@ def capture():
                 
         except FileExistsError:
                 print("\nPlease wait before taking another photo.\n")
-                
 
-capture()
-process_timer('stop')
+if __name__ == "__main__":
+
+	try:
+		capture()
+
+	finally:
+		process_timer('stop')

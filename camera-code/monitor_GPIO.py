@@ -1,9 +1,14 @@
 import time
+import os
 from datetime import datetime
 import take_photo
 import RPi.GPIO as GPIO
 from picamera2 import Picamera2
 import pathlib
+import subprocess
+import pyudev
+
+folder_name="/mnt/Lexar/Photos"
 
 GPIO.setmode(GPIO.BOARD)
 greenPin=36
@@ -17,6 +22,14 @@ GPIO.setup(greenPin, GPIO.OUT)
 wait_for_release = False
 MONITORING = True
 
+def check_usb():
+    context = pyudev.Context()
+
+    for device in context.list_devices(subsystem='block', DEVTYPE='partition'):
+        if device.get('ID_BUS') == 'usb':
+            return True
+    return False
+
 def flash_led(colPin, flashDuration):
 
 	GPIO.output(greenPin, 0)
@@ -28,19 +41,18 @@ def flash_led(colPin, flashDuration):
 		time.sleep(0.2)
 		GPIO.output(colPin, 0)
 		time.sleep(0.2)
-
 try:
-	
 	GPIO.output(greenPin, 0)
 	GPIO.output(yellowPin, 0)
 	
 	time.sleep(2)
-	
+
 	while MONITORING == True:
 		
 		button_state = GPIO.input(inPin)
 		
 		if button_state == GPIO.LOW:
+
 			wait_for_release = True
 			GPIO.output(greenPin, 1)
 			
@@ -48,9 +60,19 @@ try:
 			pass
 		
 		if wait_for_release == True and button_state == GPIO.HIGH:
+
 			GPIO.output(greenPin, 0)
-			GPIO.output(yellowPin, 1)
-			take_photo.capture()
+
+			usb_is_there = check_usb()
+
+			if usb_is_there == 0:
+
+				flash_led(yellowPin, 3)
+				print("USB is not connected")
+				
+			else:
+				subprocess.run(['sudo', 'python3', 'take_photo.py'])
+
 			GPIO.output(yellowPin, 0)
 			wait_for_release = False
 
