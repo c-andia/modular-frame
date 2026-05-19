@@ -4,13 +4,6 @@ from picamera2 import Picamera2
 from libcamera import controls
 import pathlib
 
-cam0 = Picamera2(0)
-cam1 = Picamera2(1)
-cam2 = Picamera2(2)
-cam3 = Picamera2(3)
-
-start = time.time()
-
 USB_name = '/mnt/Lexar'
 
 def get_time():
@@ -63,6 +56,13 @@ def capture():
                 print("\nPlease wait before taking another photo.\n")
 
 if __name__ == "__main__":
+
+	cam0 = Picamera2(0)
+	cam1 = Picamera2(1)
+	cam2 = Picamera2(2)
+	cam3 = Picamera2(3)
+
+	start = time.time()
 
 	try:
 		capture()
