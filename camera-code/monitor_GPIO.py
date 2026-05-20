@@ -62,7 +62,7 @@ try:
 		if wait_for_release == True and button_state == GPIO.HIGH:
 
 			GPIO.output(greenPin, 0)
-
+			GPIO.output(yellowPin, 1)
 			usb_is_there = check_usb()
 
 			if usb_is_there == 0:
