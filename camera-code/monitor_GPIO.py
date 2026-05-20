@@ -23,6 +23,7 @@ wait_for_release = False
 MONITORING = True
 
 def check_usb():
+
     context = pyudev.Context()
 
     for device in context.list_devices(subsystem='block', DEVTYPE='partition'):
@@ -36,29 +37,32 @@ def flash_led(colPin, flashDuration):
 	GPIO.output(yellowPin, 0)
 
 	for i in range(flashDuration):
-		
+
 		GPIO.output(colPin, 1)
 		time.sleep(0.2)
 		GPIO.output(colPin, 0)
 		time.sleep(0.2)
+
 try:
 	GPIO.output(greenPin, 0)
 	GPIO.output(yellowPin, 0)
-	
+
 	time.sleep(2)
 
+	flash_led(greenPin, 2)
+
 	while MONITORING == True:
-		
+
 		button_state = GPIO.input(inPin)
-		
+
 		if button_state == GPIO.LOW:
 
 			wait_for_release = True
 			GPIO.output(greenPin, 1)
-			
+
 		if wait_for_release == False and button_state == GPIO.HIGH:
 			pass
-		
+
 		if wait_for_release == True and button_state == GPIO.HIGH:
 
 			GPIO.output(greenPin, 0)
@@ -69,15 +73,25 @@ try:
 
 				flash_led(yellowPin, 3)
 				print("USB is not connected")
-				
+
 			else:
 				subprocess.run(['sudo', 'python3', 'take_photo.py'])
+				GPIO.output(yellowPin, 0)
+				flash_led(greenPin, 4)
+				GPIO.output(greenPin, 1)
+				time.sleep(0.4)
 
 			GPIO.output(yellowPin, 0)
+			GPIO.output(greenPin, 0)
+
 			wait_for_release = False
 
 except KeyboardInterrupt:
 	print("interrupted")
 
 finally:
+	for i in range(2):
+		flash_led(greenPin, 1)
+		flash_led(yellowPin, 1)
+
 	GPIO.cleanup()
