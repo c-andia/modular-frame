@@ -15,8 +15,8 @@ def process_timer(stage):
         if stage == 'stop':
                 print (f'time elapsed: {time.time()-start} seconds.')
 
-			    with open ("timelog.txt", "w") as f:
-    			    write (f'time elapsed: {time.time()-start} seconds.')
+                with open ("timelog.txt", "w") as i:
+                        i.write (f'time elapsed: {time.time()-start} seconds.')
 
 def capture():
 
@@ -34,7 +34,8 @@ def capture():
                 cam0.configure(cam0.create_still_configuration())
                 
                 cam0.start()
-			    cam0.set_controls({"AfRange": controls.AfRange.Macro})
+
+                cam0.set_controls({"AfRange":0})
                 cam0.capture_file(f"{folderName}/photo 1.png")
                 cam0.close()
 
@@ -42,14 +43,13 @@ def capture():
                 
                 cam1.start()
 
-			    cam1.set_controls({"AfRange": controls.AfRange.Macro})
+                cam1.set_controls({"AfRange":0})
                 cam1.capture_file(f"{folderName}/photo 2.png")
                 cam1.close()
                 
                 cam2.configure(cam2.create_still_configuration())
 
-
-			    cam2.set_controls({"AfRange": controls.AfRange.Macro})
+                cam2.set_controls({"AfRange":0})
                 cam2.start()
                 cam2.capture_file(f"{folderName}/photo 3.png")
                 cam2.close()
@@ -57,7 +57,7 @@ def capture():
                 cam3.configure(cam3.create_still_configuration())
 
 
-			    cam3.set_controls({"AfRange": controls.AfRange.Macro})
+                cam3.set_controls({"AfRange":0})
                 cam3.start()
                 cam3.capture_file(f"{folderName}/photo 4.png")
                 cam3.close()
