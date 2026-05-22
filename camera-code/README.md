@@ -1,4 +1,4 @@
-**The following is a reference for navigating the device's code structure.**
+### The following is a reference for navigating the device's code structure.
 
 **monitor_GPIO.py** Watches the input pins and describes the main feedback behaviour. It verifies that a viable USB storage device is connected, and then it then calls the take_photos program.
   Edit this file if: 
