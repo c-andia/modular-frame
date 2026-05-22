@@ -32,33 +32,38 @@ def capture():
                 # take photos
 
                 cam0.configure(cam0.create_still_configuration())
-                
                 cam0.start()
 
-                cam0.set_controls({"AfRange":0})
+                cam0.set_controls({"AfRange":controls.AfRangeEnum.Macro})
+                cam0.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+                time.sleep(0.5)
                 cam0.capture_file(f"{folderName}/photo 1.png")
                 cam0.close()
 
                 cam1.configure(cam1.create_still_configuration())
-                
                 cam1.start()
 
-                cam1.set_controls({"AfRange":0})
+                cam1.set_controls({"AfRange":controls.AfRangeEnum.Macro})
+                cam1.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+                time.sleep(0.5)
                 cam1.capture_file(f"{folderName}/photo 2.png")
                 cam1.close()
                 
                 cam2.configure(cam2.create_still_configuration())
-
-                cam2.set_controls({"AfRange":0})
                 cam2.start()
-                cam2.capture_file(f"{folderName}/photo 3.png")
+
+                cam2.set_controls({"AfRange":controls.AfRangeEnum.Macro})
+                cam2.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+                time.sleep(0.5)
+                cam2.capture_file(f"{folderName}/photo 2.png")
                 cam2.close()
 
                 cam3.configure(cam3.create_still_configuration())
-
-
-                cam3.set_controls({"AfRange":0})
                 cam3.start()
+
+                cam3.set_controls({"AfRange":controls.AfRangeEnum.Macro})
+                cam3.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+                time.sleep(0.5)                
                 cam3.capture_file(f"{folderName}/photo 4.png")
                 cam3.close()
                 
@@ -79,3 +84,5 @@ if __name__ == "__main__":
 
 	finally:
 		process_timer('stop')
+                
+                
