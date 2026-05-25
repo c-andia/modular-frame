@@ -16,3 +16,8 @@
 /bin/bash: home/bp/modular-frame/camera-code/camera-launcher.sh: No such file or directory	<--------------- MAY 20, 2026, 9.23.31 AM HERE
 /bin/bash: home/bp/modular-frame/camera-code/camera-launcher.sh: No such file or directory	<---------------	       ...7.31 AM 
 /bin/bash: home/bp/Desktop/modular-frame/camera-code/camera-launcher.sh: No such file or directory
+/bin/bash: home/bp/Desktop/modular-frame/camera-code/camera-launcher.sh: No such file or directory
+/bin/bash: home/bp/Desktop/modular-frame/camera-code/camera-launcher.sh: No such file or directory
+/bin/bash: home/bp/Desktop/modular-frame/camera-code/camera-launcher.sh: No such file or directory
+/bin/bash: home/bp/Desktop/modular-frame/camera-code/camera-launcher.sh: No such file or directory
+/bin/bash: home/bp/Desktop/modular-frame/camera-code/camera-launcher.sh: No such file or directory
