@@ -25,9 +25,6 @@ def wait_AfState():
                 time.sleep(0.1)
                 if af_state == 2:
                         break
-                elif af_state == 3:
-                        print ("Autofocus failed.")
-                        break
 
 def capture():
 
