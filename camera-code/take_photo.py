@@ -18,14 +18,6 @@ def process_timer(stage):
                 with open ("timelog.txt", "w") as i:
                         i.write (f'time elapsed: {time.time()-start} seconds.')
 
-def wait_AfState(camera):
-        while True:
-                metadata = camera.capture_metadata()
-                af_state = metadata.get("AfState", 0)
-                time.sleep(0.1)
-                if af_state == 2:
-                        break
-
 def capture():
 
         try:
@@ -41,44 +33,47 @@ def capture():
 
                 cam0.configure(cam0.create_still_configuration())
                 cam0.start()
-
+                job0 = cam0.autofocus_cycle(wait=False)
                 cam0.set_controls({"AfMode":controls.AfModeEnum.Auto})
                 cam0.set_controls({"AfRange":controls.AfRangeEnum.Macro})
-                cam0.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
-                wait_AfState(cam0)
+#                cam0.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+                success = cam0.wait(job0)
+                
                 cam0.capture_file(f"{folderName}/photo 1.png")
 #                cam0.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
                 cam0.close()
 
                 cam1.configure(cam1.create_still_configuration())
                 cam1.start()
-
+                job1 = cam1.autofocus_cycle(wait=False)
                 cam1.set_controls({"AfMode":controls.AfModeEnum.Auto})
                 cam1.set_controls({"AfRange":controls.AfRangeEnum.Macro})
-                cam1.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
-                wait_AfState(cam1)
+#                cam1.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+                success = cam1.wait(job1)
+                
                 cam1.capture_file(f"{folderName}/photo 2.png")
 #                cam1.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
                 cam1.close()
 
+
                 cam2.configure(cam2.create_still_configuration())
                 cam2.start()
-
+                job2 = cam2.autofocus_cycle(wait=False)
                 cam2.set_controls({"AfMode":controls.AfModeEnum.Auto})
                 cam2.set_controls({"AfRange":controls.AfRangeEnum.Macro})
                 cam2.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
-                wait_AfState(cam2)
+                success = cam2.wait(job2)
                 cam2.capture_file(f"{folderName}/photo 3.png")
 #                cam2.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
                 cam2.close()
 
                 cam3.configure(cam3.create_still_configuration())
                 cam3.start()
-
+                job3 = cam3.autofocus_cycle(wait=False)
                 cam3.set_controls({"AfMode":controls.AfModeEnum.Auto})
                 cam3.set_controls({"AfRange":controls.AfRangeEnum.Macro})
                 cam3.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
-                wait_AfState(cam3)
+                success = cam3.wait(job3)
                 cam3.capture_file(f"{folderName}/photo 4.png")
 #                cam3.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
                 cam3.close()
