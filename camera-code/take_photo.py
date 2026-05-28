@@ -31,7 +31,7 @@ def capture():
 
                 # take photos
 
-                cam0.configure(cam0.create_still_configuration())
+                cam0.configure(cam0.create_still_configuration(transform=Transform(hflip=True, vflip=True)))
                 cam0.start()
 
                 cam0.set_controls({"AfMode":controls.AfModeEnum.Auto})
@@ -42,7 +42,7 @@ def capture():
 #                cam0.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
                 cam0.close()
 
-                cam1.configure(cam1.create_still_configuration())
+                cam1.configure(cam1.create_still_configuration(transform=Transform(hflip=True, vflip=True)))
                 cam1.start()
 
                 cam1.set_controls({"AfMode":controls.AfModeEnum.Auto})
@@ -53,7 +53,7 @@ def capture():
 #                cam1.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
                 cam1.close()
 
-                cam2.configure(cam2.create_still_configuration())
+                cam2.configure(cam2.create_still_configuration(transform=Transform(hflip=True, vflip=True)))
                 cam2.start()
 
                 cam2.set_controls({"AfMode":controls.AfModeEnum.Auto})
@@ -64,7 +64,7 @@ def capture():
 #                cam2.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
                 cam2.close()
 
-                cam3.configure(cam3.create_still_configuration())
+                cam3.configure(cam3.create_still_configuration(transform=Transform(hflip=True, vflip=True)))
                 cam3.start()
 
                 cam3.set_controls({"AfMode":controls.AfModeEnum.Auto})
