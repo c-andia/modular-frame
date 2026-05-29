@@ -22,6 +22,7 @@ GPIO.setup(greenPin, GPIO.OUT)
 
 wait_for_release = False
 MONITORING = True
+timeWithoutUse = 0
 
 def check_usb():
 	
@@ -60,6 +61,8 @@ try:
 	while MONITORING == True:
 
 		button_state = GPIO.input(inPin)
+		
+		timeWithoutUse += time.time()
 
 		## Allow the user to press and hold the button by only triggering after it has been released
 		
@@ -67,6 +70,7 @@ try:
 
 			wait_for_release = True
 			GPIO.output(greenPin, 1)
+			timeWithoutUse = 0
 
 		if wait_for_release == True and button_state == GPIO.HIGH:
 
