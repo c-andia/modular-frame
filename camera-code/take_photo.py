@@ -22,6 +22,32 @@ def process_timer(stage):
                 with open ("timelog.txt", "w") as i:
                         i.write (f'time elapsed: {time.time()-start} seconds.')
 
+def Focus():
+        
+        cam0.start()
+        cam0.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+        time.sleep(4)
+        cam0.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
+        cam0.close()
+
+        cam1.start()
+        cam1.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+        time.sleep(4)
+        cam1.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
+        cam1.close()
+        
+        cam2.start()
+        cam2.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+        time.sleep(4)
+        cam2.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
+        cam2.close()
+
+        cam3.start()
+        cam3.set_controls({"AfTrigger":controls.AfTriggerEnum.Start})
+        time.sleep(4)
+        cam3.set_controls({"AfTrigger":controls.AfTriggerEnum.Cancel})
+        cam3.close()
+
 def capture():
 
         try:
