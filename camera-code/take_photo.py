@@ -4,7 +4,10 @@ from picamera2 import Picamera2
 from libcamera import controls, Transform
 import pathlib
 
-USB_name = '/mnt/Lexar'
+USB_names = [
+        '/mnt/Lexar', 
+#        'mnt/Kingston'
+            ]
 
 def get_time():
 
@@ -12,6 +15,7 @@ def get_time():
         return now.strftime("%b. %-d, %Y, %-I.%M.%S %p")
 
 def process_timer(stage):
+
         if stage == 'stop':
                 print (f'time elapsed: {time.time()-start} seconds.')
 
@@ -22,14 +26,20 @@ def capture():
 
         try:
 
-                # create folder
+                ## Create folder
 
                 ftime = get_time()
 
-                folderName = f"{USB_name}/Photos/'{ftime}'"
-                pathlib.Path.mkdir(folderName)
-
-                # take photos
+                ## Try creating the folder name in the Lexar drive. If this fails, attempt to create it in the Kingston drive.  
+                
+                try:
+                        folderName = f"{USB_name[0]}/Photos/'{ftime}'"
+                        pathlib.Path.mkdir(folderName)
+                except:
+                        folderName = f"{USB_name[1]}/Photos/'{ftime}'"
+                        pathlib.Path.mkdir(folderName)
+                
+                ## Take photos
 
                 cam0.start()
 
@@ -76,6 +86,7 @@ def capture():
 
 if __name__ == "__main__":
 
+        ## Batch initialize and configure the four cameras.
 
         cam0 = Picamera2(0)
         cam1 = Picamera2(1)
